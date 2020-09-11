@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace名称空间，名称空间代表该xml文件映射是哪个接口 -->
+<mapper namespace="com.vanweilin.dao.company.CompanyDao">
+
+    <resultMap id="companyMap" type="Company">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="expiration_date" property="expirationDate"></result>
+        <result column="address" property="address"></result>
+        <result column="license_id" property="licenseId"></result>
+        <result column="representative" property="representative"></result>
+        <result column="phone" property="phone"></result>
+        <result column="company_size" property="companySize"></result>
+        <result column="industry" property="industry"></result>
+        <result column="remarks" property="remarks"></result>
+        <result column="state" property="state"></result>
+        <result column="balance" property="balance"></result>
+    </resultMap>
+
+    <!--/*查询所有的company信息*/-->
+    <select id="selAllCompany" resultMap="companyMap">
+      select * from ss_company
+    </select>
+
+
+</mapper>

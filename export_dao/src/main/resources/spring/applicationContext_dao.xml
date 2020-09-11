@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--1. 加载dataSource配置文件-->
+    <context:property-placeholder location="classpath:properties/jdbc.properties"></context:property-placeholder>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+
+    <!--2. 创建Mybatis工厂对象-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--加载dataSource-->
+        <property name="dataSource" ref="dataSource"></property>
+        <!--扫描实体类的包-->
+        <property name="typeAliasesPackage" value="com.vanweilin.model"></property>
+        <!--导入其它Mybatis依赖的配置文件-->
+        <property name="configLocation" value="classpath:spring/sqlConfig.xml"></property>
+    </bean>
+
+    <!--3. Mapper的包扫描
+         1. 加载此目录下的接口的映射文件（要求：dao接口与映射要在同一个目录）
+         2. 自动加载此目录下的接口文件，解析dao接口中的注解
+         3. 自动对该目录下的所有接口生产代理，加入容器，所以service可以注入dao的接口代理对象
+    -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.vanweilin.dao"></property>
+    </bean>
+
+
+</beans>

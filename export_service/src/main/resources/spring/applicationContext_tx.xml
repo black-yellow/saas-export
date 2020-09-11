@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd 
+       http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd 
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--事务管理配置-->
+    <import resource="classpath:spring/applicationContext_dao.xml"></import>
+    <!--加载所有的service类到IOC容器-->
+    <context:component-scan base-package="com.vanweilin.service"></context:component-scan>
+
+    <!--创建事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!--事务通知的创建-->
+    <tx:advice id="transactionInterceptor" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="search*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="sel*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="query*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="*" propagation="REQUIRED" read-only="false"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--启用dop，事务切面-->
+    <aop:config>
+        <!--<aop:pointcut id="joint" expression="execution(* com.vanweilin.service.impl.*.*(..))"></aop:pointcut>-->
+        <!--扫描所有的service实现类-->
+        <aop:pointcut id="joint" expression="bean(*ServiceImp)"></aop:pointcut>
+        <aop:advisor advice-ref="transactionInterceptor" pointcut-ref="joint"></aop:advisor>
+    </aop:config>
+
+    <!--开启事务,推荐使用xml的方式配置-->
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+
+</beans>

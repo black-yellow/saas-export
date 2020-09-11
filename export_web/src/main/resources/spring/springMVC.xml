@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--这个配置主要用于全部前端内容的控制，-->
+
+    <!--1. 对项目里面的所有web包进行扫描-->
+    <context:component-scan base-package="com.vanweilin.web"></context:component-scan>
+
+    <!--这里的视图解析器要手动设置他们的前后缀,可以不用-->
+    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+    <!--<property name="prefix" value="/pages"></property>-->
+    <!--<property name="suffix" value=".jsp"></property>-->
+    <!--</bean>-->
+
+    <!--2.1.1启用springMVC注解扫描器，目的开启三大核心控制类，也可以自定义一个工厂实现想要添加的控制类(converter转换器注意实现Convert)-->
+    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+
+    <!--2.1.2加载类型转换器工厂,给spring添加转换功能-->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <ref bean="stringToDateConverter"></ref>
+            </set>
+        </property>
+    </bean>
+
+    <!--2.2开启静态资源的访问自动处理-->
+    <mvc:default-servlet-handler></mvc:default-servlet-handler>
+
+    <!--2.3异常处理,直接实现HandlerExceptionResolver-->
+    <bean id="baseException" class="com.vanweilin.web.exceptions.BaseException"></bean>
+
+</beans>
