@@ -13,10 +13,12 @@
     <context:component-scan base-package="com.vanweilin.web"></context:component-scan>
 
     <!--这里的视图解析器要手动设置他们的前后缀,可以不用-->
-    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-    <!--<property name="prefix" value="/pages"></property>-->
-    <!--<property name="suffix" value=".jsp"></property>-->
-    <!--</bean>-->
+    <!--默认放在WEB-INF的静态资源的全部文件，只能通过servlet跳转访问，其他方式访问均不可-->
+    <!--如果想用自定义跳转请使用ModelAndView-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
 
     <!--2.1.1启用springMVC注解扫描器，目的开启三大核心控制类，也可以自定义一个工厂实现想要添加的控制类(converter转换器注意实现Convert)-->
     <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>

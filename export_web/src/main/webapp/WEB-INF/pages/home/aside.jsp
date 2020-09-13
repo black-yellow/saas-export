@@ -52,12 +52,12 @@
                </a>
                <ul class="treeview-menu">
                    <li id="company-manager">
-                       <a href="/company/list.do" onclick="setSidebarActive(this)"  target="iframe">
+                       <a href="${ctx}/company/list" onclick="setSidebarActive(this)"  target="iframe">
                            <i class="fa fa-circle-o"></i>企业管理
                        </a>
                    </li>
                    <li id="module-manager">
-                       <a href="/system/module/list.do" onclick="setSidebarActive(this)" target="iframe">
+                       <a href="${ctx}/system/module/list" onclick="setSidebarActive(this)" target="iframe">
                            <i class="fa fa-circle-o"></i>模块管理
                        </a>
                    </li>

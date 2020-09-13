@@ -18,12 +18,64 @@
         <result column="remarks" property="remarks"></result>
         <result column="state" property="state"></result>
         <result column="balance" property="balance"></result>
+        <result column="city" property="city"></result>
     </resultMap>
 
     <!--/*查询所有的company信息*/-->
     <select id="selAllCompany" resultMap="companyMap">
       select * from ss_company
     </select>
+
+    <!--/*查询指定id的信息*/-->
+    <select id="selCompany" resultMap="companyMap">
+        select * from ss_company where id=#{id};
+    </select>
+
+
+    <!--/*删除指定id的company信息*/-->
+    <delete id="deleteCompany">
+        DELETE from ss_company where id =#{cid}
+    </delete>
+
+    <!--/*添加company信息*/-->
+    <insert id="addCompany">
+        INSERT into ss_company values(
+                      #{id},
+                      #{name},
+                      #{expirationDate},
+                      #{address},
+                      #{licenseId},
+                      #{representative},
+                      #{phone},
+                      #{companySize},
+                      #{industry},
+                      #{remarks},
+                      #{state},
+                      #{balance},
+                      #{city}
+                      )
+    </insert>
+
+    <!--/*修改company信息*/-->
+    <update id="updateCompany">
+        UPDATE ss_company
+        <set>
+            <if test="id!=null">id=#{id},</if>
+            <if test="name!=null">name=#{name},</if>
+            <if test="expirationDate!=null">expiration_date=#{expirationDate},</if>
+            <if test="address!=null">address=#{address},</if>
+            <if test="licenseId!=null">license_id=#{licenseId},</if>
+            <if test="representative!=null">representative=#{representative},</if>
+            <if test="phone!=null">phone=#{phone},</if>
+            <if test="companySize!=null">company_size=#{companySize},</if>
+            <if test="industry!=null">industry=#{industry},</if>
+            <if test="remarks!=null">remarks=#{remarks},</if>
+            <if test="state!=null">state=#{state},</if>
+            <if test="balance!=null">balance=#{balance},</if>
+            <if test="city!=null">city=#{city},</if>
+        </set>
+        where id = #{id}
+    </update>
 
 
 </mapper>

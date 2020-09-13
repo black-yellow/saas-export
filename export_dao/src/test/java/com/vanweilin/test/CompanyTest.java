@@ -1,6 +1,7 @@
 package com.vanweilin.test;
 
 import com.vanweilin.dao.company.CompanyDao;
+import com.vanweilin.model.company.Company;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,12 @@ public class CompanyTest {
 
     @Test
     public void test01() {
-        System.out.println(companyDao.selAllCompany());
+//        System.out.println(companyDao.selAllCompany());
+        Company company = new Company();
+        company.setId("9167c6c4-6d49-4190-9396-2d038de3304b");
+        company.setAddress("湖北武汉华中农业大学");
+        company.setIndustry("湖北生鄂州市");
+//        companyDao.addCompany(company);
+        companyDao.updateCompany(company);
     }
 }

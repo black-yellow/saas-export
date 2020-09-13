@@ -1,5 +1,8 @@
 package com.vanweilin.model.company;
 
+
+import java.util.Date;
+
 /**
  * @Auther: Administrator
  * @Project: ssm_project
@@ -11,7 +14,7 @@ public class Company {
 
     private String id;
     private String name;
-    private String expirationDate;
+    private Date expirationDate;
     private String address;
     private String licenseId;
     private String representative;
@@ -19,14 +22,15 @@ public class Company {
     private String companySize;
     private String industry;
     private String remarks;
-    private String state;
-    private String balance;
+    private Integer state;
+    private Double balance;
+    private String city;
 
 
     public Company() {
     }
 
-    public Company(String id, String name, String expirationDate, String address, String licenseId, String representative, String phone, String companySize, String industry, String remarks, String state, String balance) {
+    public Company(String id, String name, Date expirationDate, String address, String licenseId, String representative, String phone, String companySize, String industry, String remarks, Integer state, Double balance, String city) {
         this.id = id;
         this.name = name;
         this.expirationDate = expirationDate;
@@ -39,11 +43,11 @@ public class Company {
         this.remarks = remarks;
         this.state = state;
         this.balance = balance;
+        this.city = city;
     }
 
     /**
      * 获取
-     *
      * @return id
      */
     public String getId() {
@@ -52,7 +56,6 @@ public class Company {
 
     /**
      * 设置
-     *
      * @param id
      */
     public void setId(String id) {
@@ -61,7 +64,6 @@ public class Company {
 
     /**
      * 获取
-     *
      * @return name
      */
     public String getName() {
@@ -70,7 +72,6 @@ public class Company {
 
     /**
      * 设置
-     *
      * @param name
      */
     public void setName(String name) {
@@ -79,25 +80,22 @@ public class Company {
 
     /**
      * 获取
-     *
      * @return expirationDate
      */
-    public String getExpirationDate() {
+    public Date getExpirationDate() {
         return expirationDate;
     }
 
     /**
      * 设置
-     *
      * @param expirationDate
      */
-    public void setExpirationDate(String expirationDate) {
+    public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
 
     /**
      * 获取
-     *
      * @return address
      */
     public String getAddress() {
@@ -106,7 +104,6 @@ public class Company {
 
     /**
      * 设置
-     *
      * @param address
      */
     public void setAddress(String address) {
@@ -115,7 +112,6 @@ public class Company {
 
     /**
      * 获取
-     *
      * @return licenseId
      */
     public String getLicenseId() {
@@ -124,7 +120,6 @@ public class Company {
 
     /**
      * 设置
-     *
      * @param licenseId
      */
     public void setLicenseId(String licenseId) {
@@ -133,7 +128,6 @@ public class Company {
 
     /**
      * 获取
-     *
      * @return representative
      */
     public String getRepresentative() {
@@ -142,7 +136,6 @@ public class Company {
 
     /**
      * 设置
-     *
      * @param representative
      */
     public void setRepresentative(String representative) {
@@ -151,7 +144,6 @@ public class Company {
 
     /**
      * 获取
-     *
      * @return phone
      */
     public String getPhone() {
@@ -160,7 +152,6 @@ public class Company {
 
     /**
      * 设置
-     *
      * @param phone
      */
     public void setPhone(String phone) {
@@ -169,7 +160,6 @@ public class Company {
 
     /**
      * 获取
-     *
      * @return companySize
      */
     public String getCompanySize() {
@@ -178,7 +168,6 @@ public class Company {
 
     /**
      * 设置
-     *
      * @param companySize
      */
     public void setCompanySize(String companySize) {
@@ -187,7 +176,6 @@ public class Company {
 
     /**
      * 获取
-     *
      * @return industry
      */
     public String getIndustry() {
@@ -196,7 +184,6 @@ public class Company {
 
     /**
      * 设置
-     *
      * @param industry
      */
     public void setIndustry(String industry) {
@@ -205,7 +192,6 @@ public class Company {
 
     /**
      * 获取
-     *
      * @return remarks
      */
     public String getRemarks() {
@@ -214,7 +200,6 @@ public class Company {
 
     /**
      * 设置
-     *
      * @param remarks
      */
     public void setRemarks(String remarks) {
@@ -223,41 +208,53 @@ public class Company {
 
     /**
      * 获取
-     *
      * @return state
      */
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
     /**
      * 设置
-     *
      * @param state
      */
-    public void setState(String state) {
+    public void setState(Integer state) {
         this.state = state;
     }
 
     /**
      * 获取
-     *
      * @return balance
      */
-    public String getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
     /**
      * 设置
-     *
      * @param balance
      */
-    public void setBalance(String balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
+    /**
+     * 获取
+     * @return city
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * 设置
+     * @param city
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public String toString() {
-        return "Company{id = " + id + ", name = " + name + ", expirationDate = " + expirationDate + ", address = " + address + ", licenseId = " + licenseId + ", representative = " + representative + ", phone = " + phone + ", companySize = " + companySize + ", industry = " + industry + ", remarks = " + remarks + ", state = " + state + ", balance = " + balance + "}";
+        return "Company{id = " + id + ", name = " + name + ", expirationDate = " + expirationDate + ", address = " + address + ", licenseId = " + licenseId + ", representative = " + representative + ", phone = " + phone + ", companySize = " + companySize + ", industry = " + industry + ", remarks = " + remarks + ", state = " + state + ", balance = " + balance + ", city = " + city + "}";
     }
 }

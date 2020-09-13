@@ -24,4 +24,25 @@ public class CompanyServiceImp implements CompanyService {
 
         return companyDao.selAllCompany();
     }
+
+    @Override
+    public void removeCompany(String cid) {
+        companyDao.deleteCompany(cid);
+    }
+
+    @Override
+    public void addCompany(Company company) {
+        companyDao.addCompany(company);
+    }
+
+    @Override
+    public void updateCompany(Company company) {
+        companyDao.updateCompany(company);
+    }
+
+    @Override
+    public Company getCompany(String id) {
+        Company company = companyDao.selCompany(id);
+        return company;
+    }
 }
